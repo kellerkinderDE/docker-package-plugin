@@ -4,5 +4,6 @@ package.json
 .environment
 .platform
 .platform.app.yaml
+.gitlab-ci.yml
 kellerkinder-plugin.json
 phpmd.xml

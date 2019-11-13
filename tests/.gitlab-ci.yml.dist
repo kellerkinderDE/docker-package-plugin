@@ -1,0 +1,12 @@
+# for local testing:  gitlab-runner exec docker shopware-package-plugin-test --docker-pull-policy=never
+variables:
+  CI_PROJECT_NAME: "PackagePlugin"
+
+shopware-package-plugin-test:
+  image: pl26:latest
+  script:
+    - package-plugin
+    - ls -lah $CI_PROJECT_NAME.zip
+    - unzip -l $CI_PROJECT_NAME.zip
+  artifacts:
+    - $CI_PROJECT_NAME.zip #default name

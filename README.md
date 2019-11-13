@@ -1,6 +1,6 @@
 # kellerkinder/docker-shopware-package-plugin
-Image to zip shopware plugins without all unneded files
-- Executes composer install --no-dev on installation to remove dev-dependencies
+Image to zip shopware plugins without all unneeded files
+- Executes `composer install -qno --no-dev --ignore-platform-reqs` on installation to remove dev-dependencies
 ## Usage
 ### gitlab-ci
 ```
@@ -9,5 +9,5 @@ test-k10r-package-plugin:
 script:
     - package-plugin #optional param = zip name
 artifacts:
-    - K10rPlugin.zip #default name
+    - $CI_PROJECT_NAME.zip #default name
 ```

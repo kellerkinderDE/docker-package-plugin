@@ -1,35 +1,31 @@
 #!/bin/bash
 
-packageDirectory="zip_dir"
-
-ZIPNAME="K10rPlugin"
-if [ ! "$1" == "" ]; then
-    ZIPNAME="$1"
+PROJECT_NAME="$1"
+if [ "$PROJECT_NAME" == "" ]; then
+    PROJECT_NAME="$CI_PROJECT_NAME"
 fi
 
-mkdir -p "${packageDirectory}"
+if [ "$PROJECT_NAME" == "" ]; then
+    PROJECT_NAME="K10rPlugin"
+fi
+
+mkdir -p "${PROJECT_NAME}"
 
 for path in `git ls-files | grep -v .gitignore`; do
 	file=$(basename "$path")
 	dir=$(dirname "$path")
 
-	mkdir -p "${packageDirectory}/${dir}"
-	cp "${path}" "${packageDirectory}/${path}"
+	mkdir -p "${PROJECT_NAME}/${dir}"
+	cp "${path}" "${PROJECT_NAME}/${path}"
 done
 
-cd "${packageDirectory}"
+cd "${PROJECT_NAME}"
 
-composer install -qn --no-dev --ignore-platform-reqs
+composer install -qno --no-dev --ignore-platform-reqs
 
-if [ !  -f .sw-zip-blacklist ]; then
+if [ ! -f .sw-zip-blacklist ]; then
     cp -r /tmp/.sw-zip-blacklist.dist .sw-zip-blacklist
 fi
 
-while read $b; do
-    rm -rf $b
-done <.sw-zip-blacklist
-
-rm -rf .sw-zip-blacklist
 cd ..
-zip -rq $ZIPNAME.zip $packageDirectory/*
-rm -rf $packageDirectory
+zip -rq $PROJECT_NAME.zip $PROJECT_NAME --exclude @$PROJECT_NAME/.sw-zip-blacklist $PROJECT_NAME/.sw-zip-blacklist
