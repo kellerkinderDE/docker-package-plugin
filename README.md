@@ -12,7 +12,8 @@ test-k10r-package-plugin:
 script:
     - package-plugin #optional param = zip name
 artifacts:
-    - $CI_PROJECT_NAME.zip # default name
+    paths:
+        - $CI_PROJECT_NAME.zip # default name
 ```
 
 ## Extensions
