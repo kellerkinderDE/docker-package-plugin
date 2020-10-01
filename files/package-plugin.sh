@@ -21,6 +21,7 @@ composer install -qno --no-dev --ignore-platform-reqs
 if [ ! -f .sw-zip-blacklist ]; then
     cp -r /tmp/.sw-zip-blacklist.dist .sw-zip-blacklist
 fi
+sed -i -e "s#^#${PROJECT_NAME}/#" .sw-zip-blacklist
 
 popd
 zip -rq $PROJECT_NAME.zip $PROJECT_NAME --exclude @$PROJECT_NAME/.sw-zip-blacklist $PROJECT_NAME/.sw-zip-blacklist
