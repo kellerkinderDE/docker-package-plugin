@@ -2,18 +2,19 @@
 
 Image to zip shopware plugins without any unneeded files
 - Executes `composer install -qno --no-dev --ignore-platform-reqs` on installation to remove dev-dependencies
+- Removes all files not listed in `.zip-allowlist`
 
 ## Usage
 
-### Example .gitlab-ci.yml
+### Example gitlab-ci job
 ```
-test-k10r-package-plugin:
+k10r-package-plugin:
     image: kellerkinder/shopware-package-plugin:latest
 script:
-    - package-plugin #optional param = zip name
+    - package-plugin #optional param = folder name
 artifacts:
     paths:
-        - $CI_PROJECT_NAME.zip # default name
+        - $CI_PROJECT_NAME # default name
 ```
 
 ## Extensions
