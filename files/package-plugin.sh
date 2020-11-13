@@ -18,10 +18,12 @@ pushd "${PROJECT_NAME}"
 
 composer install -qno --no-dev --ignore-platform-reqs
 
-if [ ! -f .sw-zip-blacklist ]; then
-    cp -r /tmp/.sw-zip-blacklist.dist .sw-zip-blacklist
+if [ ! -f .sw-zip-blocklist ]; then
+    cp -r /tmp/.sw-zip-blocklist.dist .sw-zip-blocklist
 fi
-sed -i -e "s#^#${PROJECT_NAME}/#" .sw-zip-blacklist
+
+rm -rf $( cat .sw-zip-blocklist )
+rm -rf .sw-zip-blocklist #remove blocklist file from project
 
 popd
-zip -rq $PROJECT_NAME.zip $PROJECT_NAME --exclude @$PROJECT_NAME/.sw-zip-blacklist $PROJECT_NAME/.sw-zip-blacklist
+zip -rq $PROJECT_NAME.zip $PROJECT_NAME
