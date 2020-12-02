@@ -9,4 +9,4 @@ shopware-package-plugin-test:
     - ls -lah $CI_PROJECT_NAME.zip
     - unzip -l $CI_PROJECT_NAME.zip
   artifacts:
-    - $CI_PROJECT_NAME.zip #default name
+    - ${CI_PROJECT_NAME}.zip #default name

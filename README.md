@@ -5,15 +5,15 @@ Image to zip shopware plugins without any unneeded files
 
 ## Usage
 
-### Example .gitlab-ci.yml
+### Example GitLab CI job
 ```
 test-k10r-package-plugin:
     image: kellerkinder/shopware-package-plugin:latest
 script:
-    - package-plugin #optional param = zip name
+    - package-plugin #optional param = name
 artifacts:
     paths:
-        - $CI_PROJECT_NAME.zip # default name
+        - ${CI_PROJECT_NAME}.zip # default name
 ```
 
 ## Extensions
