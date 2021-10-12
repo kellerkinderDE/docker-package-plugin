@@ -6,6 +6,7 @@
 .eslintrc.js
 .git
 .gitattributes
+.githooks
 .github
 .gitignore
 .gitlab-ci.yml
@@ -33,4 +34,3 @@ psh
 sonar-project.properties
 test
 tests
-
